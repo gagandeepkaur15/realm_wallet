@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wallet_flutter/authentication_provider.dart';
 import 'package:wallet_flutter/homepage.dart';
 import 'package:wallet_flutter/register.dart';
 import 'package:wallet_flutter/signin.dart';
@@ -13,9 +15,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SignIn2(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<LoginRealm>(create: (context) => LoginRealm()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SignIn2(),
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
 
 class LoginRealm with ChangeNotifier {
-  final app = App(AppConfiguration("application-0-mpfzh"));
+  final app = App(AppConfiguration("application-0-cwoyh"));
   late User? user;
 
   Future register(String email, String password) async {
@@ -13,7 +13,7 @@ class LoginRealm with ChangeNotifier {
       notifyListeners();
       return user;
     } catch (e) {
-      throw ('error registering the user');
+      rethrow;
     }
   }
 
@@ -25,7 +25,12 @@ class LoginRealm with ChangeNotifier {
       notifyListeners();
       return user;
     } catch (e) {
-      throw ('error logging in');
+      rethrow;
     }
+  }
+
+  Future logout() async {
+    await user!.logOut();
+    notifyListeners();
   }
 }

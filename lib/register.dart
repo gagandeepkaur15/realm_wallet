@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_flutter/authentication_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:wallet_flutter/homepage.dart';
 import 'package:wallet_flutter/signin.dart';
 
@@ -95,10 +97,12 @@ class _RegisterState extends State<Register> {
                   height: 40,
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  },
+                  onTap: register,
+                  // () {
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => HomePage()));
+
+                  // },
                   child: Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 30),
@@ -146,5 +150,24 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  void register() {
+    String email = _email.text;
+    String password = _password.text;
+    context
+        .read<LoginRealm>()
+        .register(email, password)
+        .then(
+          (value) => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomePage(),
+            ),
+          ),
+        )
+        .catchError((e) {
+      print(e);
+    });
   }
 }
