@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_flutter/authentication_provider.dart';
-import 'package:wallet_flutter/homepage.dart';
-import 'package:wallet_flutter/register.dart';
 import 'package:wallet_flutter/signin.dart';
+import 'package:wallet_flutter/wallet_services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +17,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginRealm>(create: (context) => LoginRealm()),
+        ChangeNotifierProvider<WalletServices>(create: (context) => WalletServices()),
+        
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SignIn2(),
       ),

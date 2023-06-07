@@ -30,7 +30,11 @@ class LoginRealm with ChangeNotifier {
   }
 
   Future logout() async {
-    await user!.logOut();
-    notifyListeners();
+    try {
+      await user!.logOut();
+      notifyListeners();
+    } catch (e) {
+      rethrow;
+    }
   }
 }
