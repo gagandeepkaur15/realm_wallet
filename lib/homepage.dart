@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_flutter/authentication_provider.dart';
+import 'package:wallet_flutter/wallet_realm_model.dart';
 import './wallet_services.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(actions: [
         IconButton(onPressed: logout, icon: const Icon(Icons.logout))
